@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return 'project1';
+});
+
+Route::get('/test', function () {
+    return App\Resume::all();
 });
