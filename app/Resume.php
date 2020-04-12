@@ -10,4 +10,8 @@ class Resume extends Model
         'name',
         'resume'
     ];
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
