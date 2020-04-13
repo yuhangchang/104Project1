@@ -23,5 +23,8 @@ Route::get('/test', function () {
 });
 
 Route::resource('resumes', 'ResumesController');
+Route::resource('tags', 'TagsController');
 Route::post('resumes/store', 'ResumesController@store');
 Route::post('resumes/update', 'ResumesController@update');
+Route::post('tags/store', 'TagsController@store');
+Route::post('tags/update', 'TagsController@update');

@@ -4,6 +4,8 @@
 
 
 <body>
+    <a href="{{ route('resumes.index') }}" class="btn btn-primary">resume</a>
+    <a href="{{ route('tags.index') }}" class="btn btn-primary">tags</a>
     <div class="container">
             <section class="content">
                 <div>
