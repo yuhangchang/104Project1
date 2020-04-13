@@ -56,7 +56,6 @@ class ResumesController extends Controller
     {
         $resume = Resume::findOrFail($id);
         return view('resumes.show', compact('resume'));
-        return $id;
     }
 
     /**
@@ -67,7 +66,9 @@ class ResumesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resume = Resume::findOrFail($id);
+        $tags = Tag::pluck('content', 'id');
+        return view('resumes.edit', compact('resume', 'tags'));
     }
 
     /**
@@ -77,9 +78,13 @@ class ResumesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $resume = Resume::find(Request::get('id'));
+        $resume->update(Request::except('id'));
+        $resume->tags()->sync(Request::get('tag_list'));
+
+        return redirect('/resumes');
     }
 
     /**
@@ -90,6 +95,8 @@ class ResumesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resume = Resume::find($id);
+        $resume->delete($id);
+        return redirect('/resumes');
     }
 }

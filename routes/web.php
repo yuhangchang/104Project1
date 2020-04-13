@@ -24,3 +24,4 @@ Route::get('/test', function () {
 
 Route::resource('resumes', 'ResumesController');
 Route::post('resumes/store', 'ResumesController@store');
+Route::post('resumes/update', 'ResumesController@update');
