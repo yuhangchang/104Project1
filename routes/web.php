@@ -21,3 +21,6 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return App\Resume::all();
 });
+
+Route::resource('resumes', 'ResumesController');
+Route::post('resumes/store', 'ResumesController@store');

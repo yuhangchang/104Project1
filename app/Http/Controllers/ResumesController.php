@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+use App\Resume;
+use App\Tag;
 
 class ResumesController extends Controller
 {
@@ -13,7 +15,10 @@ class ResumesController extends Controller
      */
     public function index()
     {
-        //
+        $resumes = Resume::all();
+        // $resumes = Resume::latest()->get();
+
+        return view('resumes.index', compact('resumes'));
     }
 
     /**
@@ -23,7 +28,8 @@ class ResumesController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Tag::pluck('content', 'id');
+        return view('resumes.create', compact('tags'));
     }
 
     /**
@@ -34,7 +40,10 @@ class ResumesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = Request::all();
+        $resume = Resume::create($input);
+        $resume->tags()->attach($input['tag_list']);
+        return  redirect('/resumes');
     }
 
     /**
@@ -45,7 +54,9 @@ class ResumesController extends Controller
      */
     public function show($id)
     {
-        //
+        $resume = Resume::findOrFail($id);
+        return view('resumes.show', compact('resume'));
+        return $id;
     }
 
     /**
