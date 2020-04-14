@@ -10,7 +10,13 @@
                 <h3><a href="/resumes/{{ $resume->id }}">{{ $resume->name }}</a></h1>
                     {{-- <td>{{$resume->id}}</td> --}}
                     {{-- <td>{{$resume->name}}</td> --}}
-                <p>{{$resume->resume}}</p>
+                @if($resume->tags)
+                    {{-- {{$resume->tags}} --}}
+                    @foreach($resume->tags as $tag)
+                        <li>{{ $tag->content }}</li>
+                    @endforeach
+                @endif
+                {{-- <p>{{$resume->resume}}</p> --}}
             @endforeach
 
     </div>
